@@ -1,0 +1,97 @@
+* FUNCTIONS & PARAMETERS
+** 'ONESHOT' FUNCTIONS
+- play n
+  - ops: attack / release
+- sleep n
+- sample :foo
+  - ops: rate
+
+#+BEGIN_SRC ruby
+  sample :ambi_glass_hum
+  play 64, release: 1.8
+  sleep 0.1
+  play 63, release: 2
+  play 62, release: 3
+  sleep 2
+  sample :ambi_haunted_hum, rate: 0.5
+  play 90, attack: 4, release: 6
+  sleep 2
+  play 88, attack: 4, release: 4
+#+END_SRC
+
+- size()
+- point()
+- line()
+- rect()
+- ellipse()
+
+#+BEGIN_SRC processing
+  size(400, 400);
+
+  rect(100, 100, 50, 50);
+  rect(110, 110, 60, 60);
+  rect(120, 120, 80, 80);
+  rect(130, 130, 110, 110);
+  rect(140, 140, 150, 150);
+  rect(150, 150, 200, 200);
+#+END_SRC
+
+** GLOBAL BEHAVIOUR CHANGING FUNCTIONS
+- use_synth
+  - synth specific parameters
+- use_synth_defaults
+
+#+BEGIN_SRC ruby
+use_synth :fm
+play 67, release: 6, depth: 100, amp: 0.8
+
+use_synth :dsaw
+use_synth_defaults release: 5, detune: 0.2
+
+play 67
+play 70
+play 74
+
+sleep 5
+
+use_synth :prophet
+use_synth_defaults release: 0.2
+
+play 67
+sleep 0.2
+play 70
+sleep 0.2
+play 74
+sleep 0.2
+play 67
+play 70
+play 74
+
+#+END_SRC
+
+- fill()
+- stroke()
+- strokeWeight()
+- noStroke()
+- noFill()
+
+*** TODO EXAMPLES
+
+* BLOCKS
+loop do/end
+
+x.times do/end (nesting)
+#+BEGIN_SRC ruby
+use_bpm 76
+
+16.times do
+  
+  2.times do
+    sample :drum_heavy_kick
+    sleep 0.5
+  end
+  
+  sample :drum_snare_hard
+  sleep 1
+end
+#+END_SRC
