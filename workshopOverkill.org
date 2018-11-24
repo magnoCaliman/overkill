@@ -89,7 +89,6 @@ fill(255, 0, 0, 128); // and four?
 ellipse(250, 200, 200, 200);
 #+END_SRC
 
-
 * BLOCKS
 ** LOOP DO/END
 
@@ -166,10 +165,123 @@ void setup()
 
 void draw()
 {
-  ellipse(200, 100, 50, 50);
-  
+  ellipse(200, 100, 50, 50); 
 }
 #+END_SRC
 
+- background()
 
 * RANDOMIZATION
+
+- random(x, y) / rrand(x, y)
+  - give two values, and a random number inside the /range/ will be chosen
+
+** FUNCTION AS ARGUMENT FOR OTHER FUNCTIONS
+#+BEGIN_SRC ruby
+print rrand(20, 30)
+#+END_SRC
+
+#+BEGIN_SRC processing
+print(random(20, 30));
+#+END_SRC
+
+#+BEGIN_SRC processing
+void setup()
+{
+  size(400, 400);
+  background(255);
+}
+
+void draw()
+{  
+  ellipse(random(400), random(400), 50, 50);
+}
+#+END_SRC
+
+** RANDOM RANGE
+
+#+BEGIN_SRC processing
+void setup()
+{
+  size(400, 400);
+  background(255);
+  
+  //what's the difference in putting fill()
+  //here inside the setup() block... 
+  fill(random(255), 50, 100);
+}
+
+void draw()
+{
+  //...or here in the draw() block?
+  //fill(random(255), 50, 100);
+  
+  ellipse(random(400), random(400), 50, 50);
+}
+#+END_SRC
+
+#+BEGIN_SRC processing
+void setup()
+{
+  size(600, 400);
+  background(255);
+}
+
+void draw()
+{
+  line(0, random(400), 299, random(400));
+  line(301, random(400), 600, random(400));
+}
+#+END_SRC
+
+#+BEGIN_SRC ruby
+loop do
+  sample :perc_bell, rate: (rrand 0.125, 1.5)
+  sleep rrand(0.2, 2)
+end
+#+END_SRC
+
+
+#+BEGIN_SRC ruby
+use_synth :tb303
+use_synth_defaults release: 0.2
+
+loop do
+  play 40, cutoff: rrand(50, 90)
+  sleep 0.2
+end
+#+END_SRC
+
+** CHOOSE A NUMBER
+- [].choose 
+  - give a list of itens inside [brackets], and /only/ itens from that list will be chosen
+
+#+BEGIN_SRC ruby
+loop do
+  sample :drum_bass_hard
+  sleep [0.25, 0.5].choose
+end
+#+END_SRC
+
+#+BEGIN_SRC ruby
+loop do
+  sample [:drum_cymbal_closed, :drum_cymbal_open].choose
+  sleep [0.125, 0.25, 0.5].choose
+end
+#+END_SRC
+
+#+BEGIN_SRC ruby
+use_bpm 120
+
+loop do
+  8.times do
+    sample :drum_cymbal_closed
+    sleep 0.25
+  end
+  
+  4.times do
+    sample :drum_cymbal_open
+    sleep [0.25, 0.5].choose
+  end
+end
+#+END_SRC
