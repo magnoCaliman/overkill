@@ -66,26 +66,81 @@ sleep 0.2
 play 67
 play 70
 play 74
-
 #+END_SRC
 
-- fill()
 - stroke()
-- strokeWeight()
+- fill()
 - noStroke()
 - noFill()
+- strokeWeight()
 
-*** TODO EXAMPLES
+#+BEGIN_SRC processing
+size(400, 400);
+
+strokeWeight(4);
+stroke(255, 0, 0);
+
+line(0, 0, 400, 400);
+
+noStroke();
+fill(128, 128); // how does fill() understand 2 arguments?
+ellipse(150, 200, 200, 200);
+fill(255, 0, 0, 128); // and four?
+ellipse(250, 200, 200, 200);
+#+END_SRC
+
 
 * BLOCKS
-loop do/end
+** LOOP DO/END
 
-x.times do/end (nesting)
+- loop do/end
+  - no stoping! good for layering...
+
+#+BEGIN_SRC ruby
+loop do
+  sample :bd_fat
+  sleep 1
+end
+#+END_SRC
+
+** x.TIMES DO/END
+
+- x.times do/end
+#+BEGIN_SRC ruby
+8.times do
+  sample :drum_cymbal_closed
+  sleep 0.1
+end
+
+4.times do
+  sample :drum_cymbal_open
+  sleep 0.4
+end
+#+END_SRC
+
+** NESTING
+
+*** LOOP INCEPTION
+#+BEGIN_SRC ruby
+loop do
+  8.times do
+    sample :drum_cymbal_closed
+    sleep 0.1
+  end
+  
+  4.times do
+    sample :drum_cymbal_open
+    sleep 0.4
+  end
+end
+#+END_SRC
+
+*** CHALLENGE
+- Make this: https://www.youtube.com/watch?v=-tJYN-eG1zk
 #+BEGIN_SRC ruby
 use_bpm 76
 
-16.times do
-  
+loop do
   2.times do
     sample :drum_heavy_kick
     sleep 0.5
@@ -95,3 +150,26 @@ use_bpm 76
   sleep 1
 end
 #+END_SRC
+
+** SETUP/DRAW
+
+- void setup() / void draw()
+#+BEGIN_SRC processing
+void setup()
+{
+  size(400, 400);
+  strokeWeight(3);
+  noFill();
+  
+  ellipse(100, 100, 50, 50);
+}
+
+void draw()
+{
+  ellipse(200, 100, 50, 50);
+  
+}
+#+END_SRC
+
+
+* RANDOMIZATION
