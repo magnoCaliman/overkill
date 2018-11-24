@@ -287,4 +287,16 @@ end
 #+END_SRC
 * BONUS STUFF!
 ** live_loop
-** mouseX / mouseY
+
+#+BEGIN_SRC ruby
+live_loop :myBDLoop do
+  sample :drum_bass_hard
+  sleep [0.5, 0.25].choose
+end
+
+live_loop :myCymbalLoop do
+  stop
+  sample :drum_cymbal_open
+  sleep [0.125, 0.25].choose
+end
+#+END_SRC
